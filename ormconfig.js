@@ -9,9 +9,9 @@ module.exports = {
   synchronize: false,
   logging: false,
   entities: ['dist/**/*.entity.js'],
-  migrations: ['dist/src/database/migrations/**/*.js'],
+  migrations: ['dist/database/migrations/**/*.js'],
   subscribers: ['dist/subscribers/**/*.js'],
   cli: {
-    migrationsDir: 'src/src/database/migrations',
+    migrationsDir: 'src/database/migrations',
   },
 };

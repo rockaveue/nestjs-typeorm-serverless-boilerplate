@@ -1,6 +1,6 @@
 service:
   name: tutor-serverless
-
+frameworkVersion: '2'
 plugins:
   - serverless-offline
 
@@ -9,13 +9,21 @@ provider:
   runtime: nodejs14.x
   stage: ${opt:stage, 'local'}
   region: ${opt:region, 'ap-southeast-1'}
+  deploymentBucket:
+    name: tutor-serverless-dev
+    serverSideEncryption: AES256
 
 functions:
   main:
-    handler: dist/lambda.handler
+    handler: dist/serverless.handler
     environment:
       ENV: ${opt:stage, 'local'}
     events:
       - http:
+          cors: true
+          path: '/'
+          method: any
+      - http:
           method: any
           path: /{any+}
+          cors: true
